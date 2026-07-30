@@ -1,29 +1,56 @@
-Kernidee: Ein Charaktergenerator für mehrere RPG Systeme.
+# RPG-O-Matic — Idee & Planung
 
-Programmablauf
-1. Hinzzufügen von neuen Systemen
-- Die Systeme werden vom Nutzer per Drag / Drop als Dateien, darunter PDF, in die App gezogen.
-- Die App speichert diese Daten in einem Systembezogenen Projektordner und liest sie selbststäig ein.
-- Wenn der Nutzer einen "erstellen" Button klickt, erzeugt die App selbstständig einen Charaktergenerator, welcher dann entweder In-App genutzt werden kann oder eine eigene APp ist (Was wäre besser?)
+**Kernidee:** Ein Charaktergenerator für mehrere RPG-Systeme.
 
-2. Charaktererschaffung
-- Der nutzer wählt ein System aus, für das er einen Charakter erstellen will.
-- Die App stellt ihm alle notwendigen Mittel zur Verfügung.
-- Nach der Erstellung werden die Dateien in allen Formaten für gängige VTTs, wie Roll20 und als PDF exportiert und im Projektorder verfügbar gemacht
+---
 
-3. Cheatsheets
-- Es sollen von allen erfassten Systemen, auf Wunsch, Cheatsheets erstellt werden, welche den Einstieg in das System für Neueinsteiger erleichtern. Diese Cheatsheets sollen als PDF verfügbar sein.
+## Programmablauf
 
-4. Regelkruzfassungen
-- Gleichwohl sollen Regelkurzfassungen und Handouts erzeugt werden aus demselben Grund, wie bei den Cheatsheets.
+### 1. Hinzufügen neuer Systeme
 
-5. NSC Generator
-- Es soll eine einfache Möglichkeit geschaffen werden, NSC für die durch den Nutzer eingelesenen Systeme zu erzeugen.
+- Die Systeme werden vom Nutzer per Drag & Drop als Dateien (u. a. PDF) in die App gezogen.
+- Die App speichert diese Daten in einem systembezogenen Projektordner und liest sie selbstständig ein.
+- Wenn der Nutzer auf **„Erstellen“** klickt, erzeugt die App selbstständig einen Charaktergenerator.  
+  **Offene Frage:** Soll dieser Generator *innerhalb* der App genutzt werden können, oder als eigenständige App ausgeliefert werden?
 
-Rahmenbedingungen
-- Programmiersprache: Flutter
-- Das Programm soll besonders für Neurodivergente Personen und Personen mit körperlichen, wie geisten (Farbsehschwäche etc.) benutzbar sein
-- Es ist eine ausfühliche Dokumentation zu erschaffen und unter "/doc" abzulegen.
-- Es soll ein Themeswitcher erzeugt werden. Dazu soll der Ordner "assets/theme" in das erzeugte Projekt kopiert werden.
+### 2. Charaktererschaffung
 
-Offene Fragen
+- Der Nutzer wählt ein System aus, für das er einen Charakter erstellen möchte.
+- Die App stellt ihm alle dafür notwendigen Mittel zur Verfügung.
+- Nach der Erstellung werden die Charakterdaten in für gängige VTTs (z. B. Roll20) sowie als PDF exportiert und im Projektordner gespeichert.
+
+### 3. Cheatsheets
+
+- Für alle erfassten Systeme sollen auf Wunsch **Cheatsheets** erstellt werden, die Neulingen den Einstieg erleichtern.
+- Die Cheatsheets sollen als PDF exportierbar sein.
+
+### 4. Regelkurzfassungen & Handouts
+
+- Ebenfalls sollen **Regelkurzfassungen** und **Handouts** zu den Systemen erzeugt werden – aus demselben Grund wie die Cheatsheets.
+- Auch diese Materialien sollen als PDF verfügbar sein.
+
+### 5. NSC-Generator
+
+- Es soll eine einfache Möglichkeit geschaffen werden, **Nichtspielercharaktere (NSCs)** für die vom Nutzer eingelesenen Systeme zu generieren.
+
+---
+
+## Rahmenbedingungen
+
+- **Programmiersprache:** Flutter (plattformübergreifend)
+- **Barrierefreiheit / Inklusion:**  
+  Die App soll besonders für folgende Zielgruppen nutzbar sein:
+  - Neurodivergente Personen
+  - Personen mit körperlichen oder geistigen Einschränkungen (z. B. Farbsehschwäche)
+- **Dokumentation:** Eine ausführliche Dokumentation wird unter `/doc` abgelegt.
+- **Theme-Switcher:** Die App erhält einen Theme-Switcher. Dazu wird der Ordner `assets/theme` in das erzeugte Projekt kopiert.
+
+---
+
+## Offene Fragen
+
+- Soll der Charaktergenerator in der App integriert oder als separate App ausgeliefert werden?
+- Welche VTT-Exportformate werden initial unterstützt (neben Roll20)?
+- Sollen Cheatsheets und Regelkurzfassungen automatisch oder nur auf expliziten Wunsch erzeugt werden?
+- Welche Barrierefreiheitsstandards (z. B. WCAG) sollen als Mindestanforderung gelten?
+- Wie viele Systeme werden initial unterstützt – reichen Dateiformat-Importe oder braucht es eine Systemvorlage?

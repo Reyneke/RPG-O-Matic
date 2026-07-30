@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:rpg_o_matic/screens/__character_generator.dart';
+import 'package:rpg_o_matic/screens/__cheatsheets_view.dart';
+import 'package:rpg_o_matic/screens/__npc_generator.dart';
+import 'package:rpg_o_matic/screens/__system_overview.dart';
 import '../providers/theme_provider.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -13,10 +17,10 @@ class _HomeScreenState extends State<HomeScreen> {
   int _selectedIndex = 0;
 
   static const List<Widget> _screens = [
-    _SystemOverview(),
-    _CharacterGenerator(),
-    _CheatsheetsView(),
-    _NpcGenerator(),
+    SystemOverview(),
+    CharacterGenerator(),
+    CheatsheetsView(),
+    NpcGenerator(),
   ];
 
   void _onItemTapped(int index) {
@@ -71,186 +75,6 @@ class _HomeScreenState extends State<HomeScreen> {
             label: 'NSCs',
           ),
         ],
-      ),
-    );
-  }
-}
-
-class _SystemOverview extends StatelessWidget {
-  const _SystemOverview();
-
-  @override
-  Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-    return Center(
-      child: Padding(
-        padding: const EdgeInsets.all(24.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Icon(
-              Icons.add_circle_outline,
-              size: 80,
-              color: theme.colorScheme.primary,
-            ),
-            const SizedBox(height: 24),
-            Text(
-              'Systeme verwalten',
-              style: theme.textTheme.headlineMedium,
-            ),
-            const SizedBox(height: 16),
-            Text(
-              'Ziehe RPG-System-Dateien (PDF etc.) per Drag & Drop\nin die App, um neue Systeme hinzuzufügen.',
-              textAlign: TextAlign.center,
-              style: theme.textTheme.bodyLarge?.copyWith(
-                color: theme.colorScheme.onSurfaceVariant,
-              ),
-            ),
-            const SizedBox(height: 32),
-            FilledButton.icon(
-              onPressed: () {
-                // TODO: Implement system import
-              },
-              icon: const Icon(Icons.file_upload),
-              label: const Text('System importieren'),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-class _CharacterGenerator extends StatelessWidget {
-  const _CharacterGenerator();
-
-  @override
-  Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-    return Center(
-      child: Padding(
-        padding: const EdgeInsets.all(24.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Icon(
-              Icons.person_add,
-              size: 80,
-              color: theme.colorScheme.primary,
-            ),
-            const SizedBox(height: 24),
-            Text(
-              'Charakter Generator',
-              style: theme.textTheme.headlineMedium,
-            ),
-            const SizedBox(height: 16),
-            Text(
-              'Wähle ein System aus und erstelle\nneue Charaktere.',
-              textAlign: TextAlign.center,
-              style: theme.textTheme.bodyLarge?.copyWith(
-                color: theme.colorScheme.onSurfaceVariant,
-              ),
-            ),
-            const SizedBox(height: 32),
-            FilledButton.tonalIcon(
-              onPressed: () {
-                // TODO: Implement character creation
-              },
-              icon: const Icon(Icons.play_arrow),
-              label: const Text('Charakter erstellen'),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-class _CheatsheetsView extends StatelessWidget {
-  const _CheatsheetsView();
-
-  @override
-  Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-    return Center(
-      child: Padding(
-        padding: const EdgeInsets.all(24.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Icon(
-              Icons.auto_stories,
-              size: 80,
-              color: theme.colorScheme.primary,
-            ),
-            const SizedBox(height: 24),
-            Text(
-              'Cheatsheets',
-              style: theme.textTheme.headlineMedium,
-            ),
-            const SizedBox(height: 16),
-            Text(
-              'Cheatsheets und Regelkurzfassungen\nfür den schnellen Einstieg.',
-              textAlign: TextAlign.center,
-              style: theme.textTheme.bodyLarge?.copyWith(
-                color: theme.colorScheme.onSurfaceVariant,
-              ),
-            ),
-            const SizedBox(height: 32),
-            FilledButton.tonalIcon(
-              onPressed: () {
-                // TODO: Implement cheatsheet generation
-              },
-              icon: const Icon(Icons.picture_as_pdf),
-              label: const Text('Cheatsheets generieren'),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-class _NpcGenerator extends StatelessWidget {
-  const _NpcGenerator();
-
-  @override
-  Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-    return Center(
-      child: Padding(
-        padding: const EdgeInsets.all(24.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Icon(
-              Icons.android,
-              size: 80,
-              color: theme.colorScheme.primary,
-            ),
-            const SizedBox(height: 24),
-            Text(
-              'NSC Generator',
-              style: theme.textTheme.headlineMedium,
-            ),
-            const SizedBox(height: 16),
-            Text(
-              'Erstelle Nicht-Spieler-Charaktere\nfür deine Abenteuer.',
-              textAlign: TextAlign.center,
-              style: theme.textTheme.bodyLarge?.copyWith(
-                color: theme.colorScheme.onSurfaceVariant,
-              ),
-            ),
-            const SizedBox(height: 32),
-            FilledButton.tonalIcon(
-              onPressed: () {
-                // TODO: Implement NPC generation
-              },
-              icon: const Icon(Icons.groups),
-              label: const Text('NSC erstellen'),
-            ),
-          ],
-        ),
       ),
     );
   }
