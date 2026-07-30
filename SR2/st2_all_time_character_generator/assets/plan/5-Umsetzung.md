@@ -239,87 +239,88 @@ Woche 13-14: ████████████████████  Polis
 
 ## 3. Sprintplanung
 
-### 3.1 Sprint 0: Projekt-Setup (Woche 1-2)
+### 3.1 Sprint 0: Projekt-Setup (Woche 1-2) ✅ ABGESCHLOSSEN
 
-**Sprint Goal**: Funktionsfähiges Grundgerüst mit Datenbank und Theme
+> **Status**: ✅ Abgeschlossen
+> - Projekt kompilierbar (flutter analyze: no issues)
+> - Datenbank (Drift) mit 7 Tabellen erstellt
+> - Repository-Interfaces definiert
+> - Riverpod 3.x Provider-Setup
+> - Theme-System (app_theme.dart) erweitert
+> - ThemeSwitcher implementiert
+> - CI/CD Pipeline (GitHub Actions)
+> - Unit-Tests (3 Tests, all green)
 
-**User Stories**:
-- [ ] US-001: Als Entwickler möchte ich ein kompilierbares Flutter-Projekt, um starten zu können
-- [ ] US-002: Als Nutzer möchte ich zwischen Light/Dark/High-Contrast Theme wählen können
-- [ ] US-003: Als Entwickler möchte ich eine type-safe Datenbank haben, um Charaktere zu speichern
-- [ ] US-004: Als Entwickler möchte ich Repository-Pattern implementiert haben, um Testbarkeit zu gewährleisten
+### 3.2 Sprint 1: Core Rules Engine (Woche 3-4) ✅ ABGESCHLOSSEN
+
+> **Status**: ✅ Abgeschlossen
+> - **DiceRoller**: Würfelsystem mit 6er-Explosionen, Edge-Aktionen, Grenzfälle
+> - **Metatypes**: Alle 5 SR2-Metatypen (Mensch-Elf-Zwerg-Ork-Troll) mit Boni & Limits
+> - **Priority System**: Attributspunkte (30-10), Skillpunkte (40-15), Nuyen (1M-5K)
+> - **RuleEngine**: Attributs-Validierung gegen Metatype-Limits, Priority-Validierung
+> - **Validation Framework**: ValidationResult, ValidationMessage, CharacterValidator
+> - **Unit-Tests**: 46 Tests, all green; `flutter analyze`: no issues
+>
+> **Erkanntes Problem**: Immer wieder schleichen sich Relikte aus anderen Shadowrun-
+> Versionen in den Code ein (z.B. Edge-System). Daher folgt Sprint 1.5 zur direkten
+> PDF-basierten Regelverifikation.
+
+### 3.3 Sprint 1.5: PDF-basierte Regelverifikation (Zusatz-Sprint) 🏃 AKTUELL
+
+**Sprint Goal**: Alle implementierten Core Rules gegen die originalen SR2-PDFs verifizieren
+und Fehlinterpretationen aus anderen Editionen bereinigen.
+
+**Begründung**:
+> Da es immer wieder passiert, dass Relikte aus anderen Shadowrunversionen
+> auftauchen (z.B. Edge), werden die Regelwerke unter `/assets/pdf/de` und
+> `/assets/pdf/en` direkt eingelesen und mit der Implementierung abgeglichen.
+
+**Primäre Quellen**:
+| PDF | Sprache | Priorität |
+|-----|---------|-----------|
+| `assets/pdf/SR2/de/Grundregelwerk SR2.01D.pdf` | 🇩🇪 Deutsch | ⭐ Höchste |
+| `assets/pdf/SR2/en/Core Rulebook Second Edition (FAS7901).pdf` | 🇬🇧 Englisch | Referenz |
+| `assets/pdf/SR2/de/Shadowrun Kompendium - Jenseits der Schatten.pdf` | 🇩🇪 Deutsch | Erweiterung |
+
+**Zu verifizierende Regeln**:
+- [ ] **Probenmechanik** (6er-Explosionen vs. andere Editionen)
+- [ ] **Attributs-Limits** je Metatyp (korrekte Max/Min laut GRW S. 15-20)
+- [ ] **Priority-System** (Punkte-Werte A-E laut GRW S. 24-30)
+- [ ] **Metatype-Boni** (keine Boni aus SR3/SR4 übernommen)
+- [ ] **Edge-System** (Existiert Edge in SR2 überhaupt? Korrekte Regel?)
+- [ ] **Essence-Berechnung** (GRW vs. Schattenläufer Kompendium)
+- [ ] **Initiative-Berechnung** (Quickness + Intelligence korrekt?)
+- [ ] **Schadenssystem** (Light/Physical/Serious laut GRW)
 
 **Tasks**:
 ```
-[ ] Flutter-Projekt erstellen (flutter create)
-[ ] pubspec.yaml konfigurieren (drift, riverpod, freezed, google_fonts)
-[ ] Ordnerstruktur erstellen (lib/domain, lib/infrastructure, lib/presentation)
-[ ] Drift Schema definieren (Characters, Rulebooks, Rules Tables)
-[ ] AppDatabase Klasse implementieren
-[ ] Repository-Interfaces definieren (CharacterRepository, RuleRepository)
-[ ] Erste Repository-Implementierungen (DriftCharacterRepository)
-[ ] Theme-System erweitern (app_theme.dart)
-[ ] ThemeSwitcher Riverpod-Provider implementieren
-[ ] Theme-Einstellungen in SharedPreferences speichern
-[ ] Unit-Test-Setup (flutter_test, mocktail)
-[ ] GitHub Actions CI konfigurieren
+1. PDF-Parser aufsetzen (pdf_text) für Text-Extraktion
+2. Deutsches GRW (Grundregelwerk SR2.01D.pdf) einlesen
+3. Relevante Kapitel identifizieren: Attribute (Kap. 2), Priority (Kap. 3), Proben (Kap. 4)
+4. Attributs-Limits und Metatype-Boni aus PDF extrahieren und mit Code abgleichen
+5. Priority-System-Punkte aus PDF extrahieren und mit Code abgleichen
+6. Edge-Regel im PDF suchen: Gibt es Edge in SR2? Wenn ja: korrekte Regel implementieren
+7. Essence-Berechnung aus PDF extrahieren
+8. Initiative-/Schadensregeln aus PDF extrahieren
+9. Alle Abweichungen dokumentieren und Code korrigieren
+10. Unit-Tests mit PDF-Referenzwerten aktualisieren
 ```
 
 **Definition of Done**:
-- ✅ Projekt kompiliert auf allen 3 Plattformen (Web, Desktop, Mobile)
-- ✅ Datenbank wird erstellt und migriert
-- ✅ Theme kann gewechselt werden
-- ✅ Erste Unit-Tests laufen erfolgreich
-- ✅ CI Pipeline ist grün
+- ✅ Alle implementierten Core Rules sind mit PDF-Quellen abgeglichen
+- ✅ Alle Abweichungen dokumentiert und korrigiert
+- ✅ Edge-System nach SR2-Regeln (nicht nach anderen Editionen)
+- ✅ Unit-Tests referenzieren PDF-Seitenzahlen
+- ✅ `flutter analyze`: no issues
 
 **Risiken**:
-- Drift Code-Generierung könnte Probleme machen → Zeitpuffer 4h
-- Riverpod 2.x Setup könnte Learning-Curve haben → Dokumentation studieren
+- PDF-Parsing (pdf_text) könnte ungenau sein → Manuelle Überprüfung der Extraktion
+- GRW-PDF könnte gescannt sein (OCR nötig) → Option A: pdfium (Post-MVP). Option B: **google_mlkit_text_recognition** (verfügbar, Desktop/Mobile). Option C: Manueller Abgleich als Fallback.
+- OCR-Strategie: `google_mlkit_text_recognition` kann direkt in Sprint 1.5 genutzt werden, falls `pdf_text` nicht ausreicht. Keine externe Websuche nötig.
 
 ---
 
-### 3.2 Sprint 1: Core Rules Engine (Woche 3-4)
-
-**Sprint Goal**: Funktionsfähige Regel-Engine mit Probenmechanik und Attributen
-
-**User Stories**:
-- [ ] US-005: Als Nutzer möchte ich Würfelproben machen können (6er-Explosionen)
-- [ ] US-006: Als Nutzer möchte ich meine Attribute sehen und verstehen
-- [ ] US-007: Als System möchte ich automatisch Limits berechnen (Metatype-abhängig)
-- [ ] US-008: Als Nutzer möchte ich sehen, ob mein Charakter gültig ist
-
-**Tasks**:
-```
-[ ] RuleEngine Grundgerüst erstellen
-[ ] DiceRoller Service implementieren (Würfelsystem)
-[ ] 6er-Explosionen implementieren
-[ ] Grenzfälle (1en, 6en) behandeln
-[ ] Edge-System Integration (Edge-Pool, Edge-Aktionen)
-[ ] Attribute Entity erstellen (freezed)
-[ ] Attributs-Berechnung (Metatype-Boni, Limits)
-[ ] PrioritySelection Entity erstellen
-[ ] Priority-System Logik (Punkte verteilen)
-[ ] ValidationResult Entity erstellen
-[ ] Validierungs-Framework (ValidationSeverity, ValidationError)
-[ ] Erste Validatoren (Attribute, Priority)
-[ ] Unit-Tests für alle Regeln (90% Coverage)
-```
-
-**Definition of Done**:
-- ✅ Würfelproben funktionieren korrekt (getestet gegen Referenz-Tabelle)
-- ✅ Attribute werden korrekt berechnet
-- ✅ Priority-System validiert korrekt
-- ✅ Edge-System funktioniert
-- ✅ Unit-Tests > 90% Coverage
-- ✅ Alle Regeln entsprechen SR2 Grundregeln
-
-**Risiken**:
-- Regel-Interpretationsfehler → Experten-Review einplanen
-- Performance bei komplexen Berechnungen → Caching vorbereiten
-
----
-
-### 3.3 Sprint 2: Character Creation UI (Woche 5-6)
+### 3.4 Sprint 2: Character Creation UI (Woche 5-6)
 
 **Sprint Goal**: Kompletter Character Creation Wizard funktionsfähig
 
@@ -370,7 +371,7 @@ Woche 13-14: ████████████████████  Polis
 
 ---
 
-### 3.4 Sprint 3: Advanced Systems (Woche 7-8)
+### 3.5 Sprint 3: Advanced Systems (Woche 7-8)
 
 **Sprint Goal**: Erweiterte Regelsysteme integriert
 
@@ -410,7 +411,7 @@ Woche 13-14: ████████████████████  Polis
 
 ---
 
-### 3.5 Sprint 4: Magic & Resonance (Woche 9-10)
+### 3.6 Sprint 4: Magic & Resonance (Woche 9-10)
 
 **Sprint Goal**: Vollständiges Magie/Resonance-System
 
@@ -457,7 +458,7 @@ Woche 13-14: ████████████████████  Polis
 
 ---
 
-### 3.6 Sprint 5: Advanced Features (Woche 11-12)
+### 3.7 Sprint 5: Advanced Features (Woche 11-12)
 
 **Sprint Goal**: Import/Export, Updates, Plugin-System
 
@@ -500,7 +501,7 @@ Woche 13-14: ████████████████████  Polis
 
 ---
 
-### 3.7 Sprint 6: Polish & Release (Woche 13-14)
+### 3.8 Sprint 6: Polish & Release (Woche 13-14)
 
 **Sprint Goal**: Release-fähige Version
 
